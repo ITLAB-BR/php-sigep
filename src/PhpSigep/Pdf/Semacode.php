@@ -655,11 +655,11 @@ class Semacode {
             // consider each encoding from this $point
             // ASCII
             $sl = $tl = 1;
-            if ($this->isDigit($s[$p]) && $p + 1 < $l && $this->isDigit($s[$p + 1])) {
+            if ($this->isDigit(($s[$p] ?? false)) && $p + 1 < $l && $this->isDigit(($s[$p + 1] ?? false))) {
                 //$this->debug("double digit");
                 // double digit
                 $sl = 2;
-            } elseif ($s[$p] & 0x80) {
+            } elseif (($s[$p] ?? false) & 0x80) {
                 //$this->debug("high shifted");
                 // high shifted
                 $tl = 2;
@@ -681,7 +681,7 @@ class Semacode {
             $sub = $tl = $sl = 0;
             do {
                 $psl = $p + $sl++;
-                $c = $s[$psl];
+                $c = $s[$psl] ?? false;
                 //$this->debug("s: " + s);
                 //$this->debug("psl: " + $psl);
                 //$this->debug("c40: " + c);
@@ -738,7 +738,7 @@ class Semacode {
             $tl = 0;
             $sl = 0;
             do {
-                $c = $s[$p + $sl++];
+                $c = $s[$p + $sl++] ?? false;
                 //$this->debug("text: " . $c);
                 if ($c & 0x80) {
                     // shift + upper
@@ -791,7 +791,7 @@ class Semacode {
             // X12
             $sub = $tl = $sl = 0;
             do {
-                $c = $s[$p + $sl++];
+                $c = $s[$p + $sl++] ?? false;
                 //$this->debug("x12: " . $c);
                 if ($c != 13 && $c != '*' && $c != '>' && $c != ' ' && !$this->isDigit($c) && !$this->isUpper($c)) {
                     $sl = 0;
@@ -830,7 +830,7 @@ class Semacode {
             // EDIFACT
             //$this->debug("edifact");
             $sl = $bl = 0;
-            if ($s[$p] >= 32 && $s[$p] <= 94) {
+            if (($s[$p] ?? false) >= 32 && ($s[$p] ?? false) <= 94) {
                 // can encode 1
                 //$this->debug("can encode 1");
                 $bs = 0;
@@ -848,7 +848,7 @@ class Semacode {
                         }
                     }
                 }
-                if ($p + 1 < $l && $ss[$p + 1] >= 32 && $s[$p + 1] <= 94) {
+                if ($p + 1 < $l && $ss[$p + 1] >= 32 && ($s[$p + 1] ?? false) <= 94) {
                     // can encode 2
                     //$this->debug("can encode 2");
                     if ($p + 2 == $l && (!$bl || $bl < 2)) {
@@ -968,7 +968,7 @@ class Semacode {
     // Returns the grid containing the matrix. L corner at 0,0.
     // Takes the string to be encoded
     function encode($barcode) {
-	$encoded = $this->makeEncoding();
+    $encoded = $this->makeEncoding();
         $W = 0;
         $H = 0;
         $grid = "";
