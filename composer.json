@@ -1,5 +1,5 @@
 {
-    "name": "stavarengo/php-sigep",
+    "name": "ITLAB-BR/php-sigep",
     "type": "library",
     "description": "Integração com Web Service do Correios. Gera etiquetas, consulta preços e prazos, imprime etiquetas e PLP, etc.",
     "keywords": ["correios", "sigep"],
@@ -35,8 +35,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Rafael Stavarengo",
-            "email": "faelsta@gmail.com"
+            "name": "Marcelo Néias",
+            "email": "marcelo.neias@itlab.com.br"
         }
     ]
 }
