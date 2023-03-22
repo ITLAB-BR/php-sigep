@@ -8,6 +8,7 @@ namespace PhpSigep\Model;
  */
 class ServicoDePostagem extends AbstractModel
 {
+    const SERVICE_SEDEX_HOJE_EMPRESARIAL = '03662';
     const SERVICE_PAC_41068 = '41068';
     const SERVICE_PAC_04510 = '04510';
     const SERVICE_PAC_GRANDES_FORMATOS = '41300';
@@ -70,6 +71,7 @@ class ServicoDePostagem extends AbstractModel
             // NOVOS CODIGOS DE SERVICO DOS CORREIOS
             self::SERVICE_PAC_CONTRATO_AGENCIA_03298 => array('Pac 03298', 162026),
             self::SERVICE_SEDEX_CONTRATO_AGENCIA_03220 => array('Sedex 03220', 162022),
+            self::SERVICE_SEDEX_HOJE_EMPRESARIAL => array('Sedex Hoje Empresarial', 162414),
 
             // NOVOS CODIGOS DE SERVICO DOS CORREIOS BRONZE (1o sem 2020)
             self::SERVICE_PAC_CONTRATO_AGENCIA_03085 => array('Pac 03085', 162011),
